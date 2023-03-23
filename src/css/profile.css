@@ -1,0 +1,90 @@
+.profile-img {
+    width: 100%;
+    max-width: 150px;
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: var(--box-shadow);
+    border: 1px solid black;
+}
+
+.student-profile h3 {
+    max-width: 150px;
+    padding: 0.5rem 0;
+}
+
+.profile-container {
+    margin: auto;
+    display: grid;
+    grid-template-areas: "profile info info" "other other other";
+    width: min(100%, 700px);
+    grid-gap: 2rem;
+}
+
+.student-profile {
+    grid-area: profile;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.student-info {
+    grid-area: info;
+}
+
+.other-info {
+    grid-area: other;
+}
+
+.student-profile,
+.student-info {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+}
+
+.student-image {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.student-profile h3 {
+    text-align: center;
+}
+
+.student-info > table {
+    width: 100%;
+}
+
+.student-info td:first-child {
+    text-align: left;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.student-info td:last-child {
+    text-align: right;
+}
+.student-info td {
+    width: auto;
+    padding: 0.5rem 0;
+}
+
+.btn-active {
+    padding: 0.5rem 1rem;
+    background: var(--primary-color);
+    color: var(--bg-color);
+    border-radius: var(--box-radius-sm);
+    border: none;
+    outline: none;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-active:hover {
+    transform: scale(97%);
+    box-shadow: none;
+}
