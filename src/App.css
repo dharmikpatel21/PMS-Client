@@ -57,6 +57,9 @@ svg {
 .flex {
     display: flex;
 }
+.flex-col {
+    flex-direction: column;
+}
 .justify-center {
     justify-content: center;
 }
@@ -68,6 +71,14 @@ svg {
 }
 .gap-0 {
     gap: 0.5rem;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.empty-img {
+    width: 100%;
 }
 
 /* .w-6 {

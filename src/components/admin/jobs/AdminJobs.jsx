@@ -80,7 +80,7 @@ const AdminJobs = () => {
                     </button>
                 </div>
             </div>
-            <ShowJobs title={"All Jobs"} data={jobData} />
+            <ShowJobs data={jobData} />
         </>
     );
 };
