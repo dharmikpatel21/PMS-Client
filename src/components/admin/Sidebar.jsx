@@ -4,7 +4,11 @@ import { NavLink } from "react-router-dom";
 
 const Sidebar = ({ activeNavToggler }) => {
     const menu = [
-        { linkName: "Dashboard", link: "/admin/dashboard", icon: "#" },
+        {
+            linkName: "Dashboard",
+            link: "/admin/dashboard",
+            icon: "#",
+        },
         { linkName: "Students", link: "/admin/students", icon: "#" },
         { linkName: "All Jobs", link: "/admin/jobs", icon: "#" },
         {

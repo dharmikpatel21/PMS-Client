@@ -44,3 +44,36 @@ main {
     min-height: 100vh;
     width: 100%;
 }
+
+.svg-wrapper {
+    width: 2rem;
+    height: 2rem;
+}
+
+svg {
+    width: 80%;
+}
+
+.flex {
+    display: flex;
+}
+.justify-center {
+    justify-content: center;
+}
+.justify-between {
+    justify-content: space-between;
+}
+.items-center {
+    align-items: center;
+}
+.gap-0 {
+    gap: 0.5rem;
+}
+
+/* .w-6 {
+    width: 1.5rem;
+}
+
+.h-6 {
+    height: 1.5rem;
+} */

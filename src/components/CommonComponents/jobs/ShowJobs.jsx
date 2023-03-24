@@ -1,9 +1,8 @@
 import React from "react";
 
-const Jobs = ({ title, data }) => {
+const Jobs = ({ data }) => {
     return (
         <main>
-            <h1>{title}</h1>
             <div>
                 {data.map((p) => {
                     return (
