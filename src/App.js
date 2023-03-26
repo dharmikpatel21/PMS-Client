@@ -18,52 +18,52 @@ import StudentApprovedJobs from "./components/student/jobs/StudentApprovedJobs";
 import StudentProfile from "./components/student/profile/StudentProfile";
 
 function App() {
-    return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<StudentLogin />} />
-                <Route path="/student/login" element={<StudentLogin />} />
-                <Route path="/admin/login" element={<AdminLogin />} />
-                {/* Admin Route */}
-                <Route element={<AdminPrivateComponent />}>
-                    <Route
-                        path="/admin/dashboard"
-                        element={<AdminDashboard />}
-                    />
-                    <Route path="/admin/students" element={<AdminStudents />} />
-                    <Route path="/admin/jobs" element={<AdminJobs />} />
-                    <Route
-                        path="/admin/jobapplications"
-                        element={<AdminJobApplications />}
-                    />
-                    <Route
-                        path="/admin/approvedjobs"
-                        element={<AdminApprovedJobs />}
-                    />
-                </Route>
-                {/* Student Route */}
-                <Route element={<StudentPrivateComponent />}>
-                    <Route
-                        path="/student/dashboard"
-                        element={<StudentDashboard />}
-                    />
-                    <Route path="/student/jobs" element={<StudentJobs />} />
-                    <Route
-                        path="/student/jobapplications"
-                        element={<StudentJobApplications />}
-                    />
-                    <Route
-                        path="/student/approvedjobs"
-                        element={<StudentApprovedJobs />}
-                    />
-                    <Route
-                        path="/student/myprofile"
-                        element={<StudentProfile />}
-                    />
-                </Route>
-            </Routes>
-        </BrowserRouter>
-    );
+	return (
+		<BrowserRouter>
+			<Routes>
+				<Route path="/" element={<StudentLogin />} />
+				<Route path="/student/login" element={<StudentLogin />} />
+				<Route path="/admin/login" element={<AdminLogin />} />
+				{/* Admin Route */}
+				<Route element={<AdminPrivateComponent />}>
+					<Route
+						path="/admin/dashboard"
+						element={<AdminDashboard />}
+					/>
+					<Route path="/admin/students" element={<AdminStudents />} />
+					<Route path="/admin/jobs" element={<AdminJobs />} />
+					<Route
+						path="/admin/jobapplications"
+						element={<AdminJobApplications />}
+					/>
+					<Route
+						path="/admin/approvedjobs"
+						element={<AdminApprovedJobs />}
+					/>
+				</Route>
+				{/* Student Route */}
+				<Route element={<StudentPrivateComponent />}>
+					<Route
+						path="/student/dashboard"
+						element={<StudentDashboard />}
+					/>
+					<Route path="/student/jobs" element={<StudentJobs />} />
+					<Route
+						path="/student/jobapplications"
+						element={<StudentJobApplications />}
+					/>
+					<Route
+						path="/student/approvedjobs"
+						element={<StudentApprovedJobs />}
+					/>
+					<Route
+						path="/student/myprofile"
+						element={<StudentProfile />}
+					/>
+				</Route>
+			</Routes>
+		</BrowserRouter>
+	);
 }
 
 export default App;
