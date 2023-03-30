@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import ShowJobsStudent from "../../CommonComponents/jobs/ShowJobsStudent";
+import AdminShowJobsStudent from "./AdminShowJobsStudent";
 import Loading from "../../Loading";
 
 const AdminJobApplications = () => {
@@ -93,7 +93,10 @@ const AdminJobApplications = () => {
 							</button>
 						</div>
 					</div>
-					<ShowJobsStudent data={jobApplications} applybtn={true} />
+					<AdminShowJobsStudent
+						data={jobApplications}
+						approveBtn={true}
+					/>
 				</>
 			)}
 		</main>

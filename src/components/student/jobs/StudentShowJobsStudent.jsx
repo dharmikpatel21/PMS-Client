@@ -9,7 +9,7 @@ const ShowJobsStudent = ({ data, applybtn }) => {
 		console.log(email);
 	};
 
-	if (data.length == 0) {
+	if (data.length === 0) {
 		return <NoData />;
 	}
 	return (
@@ -18,11 +18,11 @@ const ShowJobsStudent = ({ data, applybtn }) => {
 				return (
 					<div className="job-card" key={p._id}>
 						<p>{JSON.stringify(p)}</p>
-						<div className="apply-btn-container">
+						<div className="active-btn-container">
 							{applybtn ? (
 								<>
 									<button
-										className="apply-btn"
+										className="active-btn"
 										value={p.studentemail}
 										onClick={(e) =>
 											handleViewProfile(e.target.value)
@@ -31,7 +31,7 @@ const ShowJobsStudent = ({ data, applybtn }) => {
 										View Profile
 									</button>
 									<button
-										className="apply-btn"
+										className="active-btn"
 										value={p._id}
 										onClick={(e) =>
 											handleApply(e.target.value)

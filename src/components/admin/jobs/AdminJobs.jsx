@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import ShowJobs from "../../CommonComponents/jobs/ShowJobs";
+import AdminShowJobs from "./AdminShowJobs";
 import "../../../css/search.css";
 import Loading from "../../Loading";
 
@@ -92,7 +92,7 @@ const AdminJobs = () => {
 							</button>
 						</div>
 					</div>
-					<ShowJobs data={jobData} />
+					<AdminShowJobs data={jobData} />
 				</>
 			)}
 		</main>

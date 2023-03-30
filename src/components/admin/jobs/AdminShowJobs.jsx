@@ -1,8 +1,8 @@
 import React from "react";
 import NoData from "../../NoData";
 
-const ShowJobs = ({ data }) => {
-	if (data.length == 0) {
+const AdminShowJobs = ({ data }) => {
+	if (data.length === 0) {
 		return <NoData />;
 	}
 	return (
@@ -18,4 +18,4 @@ const ShowJobs = ({ data }) => {
 	);
 };
 
-export default ShowJobs;
+export default AdminShowJobs;
