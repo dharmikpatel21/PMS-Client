@@ -22,7 +22,7 @@ const AdminShowJobsStudent = ({ data, approveBtn }) => {
 							{approveBtn ? (
 								<>
 									<button
-										className="active-btn"
+										className="btn active-btn"
 										value={p.studentemail}
 										onClick={(e) =>
 											handleViewProfile(e.target.value)
@@ -31,7 +31,7 @@ const AdminShowJobsStudent = ({ data, approveBtn }) => {
 										View Profile
 									</button>
 									<button
-										className="active-btn"
+										className="btn active-btn"
 										value={p._id}
 										onClick={(e) =>
 											handleApply(e.target.value)

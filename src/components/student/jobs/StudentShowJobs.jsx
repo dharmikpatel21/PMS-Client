@@ -18,7 +18,7 @@ const StudentShowJobs = ({ data, applyBtn }) => {
 						{applyBtn ? (
 							<div className="active-btn-container">
 								<button
-									className="active-btn"
+									className="btn active-btn"
 									value={p._id}
 									onClick={(e) => {
 										handelApply(e.target.value);

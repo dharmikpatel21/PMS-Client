@@ -9,6 +9,8 @@ const AdminJobs = () => {
 	const [searchBoxData, setSearchBoxData] = useState("");
 	const [search, setSearch] = useState("");
 	const [loading, setLoading] = useState(false);
+	const [removeJob, setRemoveJob] = useState();
+	const [editJob, setEditJob] = useState();
 
 	function handleSearch() {
 		if (searchBoxData !== "") {
@@ -16,7 +18,7 @@ const AdminJobs = () => {
 			console.log(searchBoxData);
 		}
 	}
-	useEffect(() => {
+	const fetchData = () => {
 		setLoading(true);
 		axios
 			.get(`http://localhost:5001/api/admin/fetch/jobs`, {
@@ -31,6 +33,26 @@ const AdminJobs = () => {
 			})
 			.catch((err) => console.log(err));
 		setLoading(false);
+	};
+	const removeData = (_id) => {
+		console.log("_id: " + _id);
+		axios
+			.delete(`http://localhost:5001/api/admin/fetch/jobs/${_id}`, {
+				headers: {
+					"auth-token": sessionStorage.getItem("auth-token"),
+				},
+			})
+			.then((res) => {
+				window.alert("Record deleted...");
+			})
+			.catch((err) => console.log(err));
+	};
+	useEffect(() => {
+		removeData(removeJob);
+		fetchData();
+	}, [removeJob]);
+	useEffect(() => {
+		fetchData();
 	}, []);
 	useEffect(() => {
 		setLoading(true);
@@ -92,7 +114,11 @@ const AdminJobs = () => {
 							</button>
 						</div>
 					</div>
-					<AdminShowJobs data={jobData} />
+					<AdminShowJobs
+						data={jobData}
+						setRemoveJob={setRemoveJob}
+						setEditJob={setEditJob}
+					/>
 				</>
 			)}
 		</main>

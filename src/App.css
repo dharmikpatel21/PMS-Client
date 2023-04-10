@@ -114,7 +114,17 @@ svg {
 	transition: all 0.2s ease;
 	cursor: pointer;
 }
-.active-btn:hover {
+.red-btn {
+	background-color: var(--red-color);
+	color: white;
+	padding: 0.5rem 1rem;
+	border: none;
+	outline: none;
+	border-radius: 8px;
+	transition: all 0.2s ease;
+	cursor: pointer;
+}
+.btn:hover {
 	transform: scale(103%);
 }
 /* .w-6 {
