@@ -8,6 +8,7 @@ const AdminStudents = () => {
 	const [searchBoxData, setSearchBoxData] = useState("");
 	const [search, setSearch] = useState("");
 	const [loading, setLoading] = useState(false);
+	const [removeStudent, setRemoveStudent] = useState();
 
 	function handleSearch() {
 		if (searchBoxData !== "") {
@@ -15,8 +16,18 @@ const AdminStudents = () => {
 			console.log(searchBoxData);
 		}
 	}
+	const handleEdit = (_id) => {
+		console.log("Edit: " + _id);
+	};
+	const handleRemove = (_id) => {
+		const ans = window.confirm("Are you sure to delete record?");
+		if (ans === 0) {
+			return;
+		}
+		setRemoveStudent(_id);
+	};
 
-	useEffect(() => {
+	const fetchData = () => {
 		setLoading(true);
 		axios
 			.get("http://localhost:5001/api/admin/fetch/students", {
@@ -31,9 +42,23 @@ const AdminStudents = () => {
 			})
 			.catch((err) => console.log(err));
 		setLoading(false);
-	}, []);
+	};
 
-	useEffect(() => {
+	const removeData = (_id) => {
+		if (_id === "" || !_id) return;
+		axios
+			.delete(`http://localhost:5001/api/admin/fetch/students/${_id}`, {
+				headers: {
+					"auth-token": sessionStorage.getItem("auth-token"),
+				},
+			})
+			.then((res) => {
+				window.alert("Record deleted...");
+			})
+			.catch((err) => console.log(err));
+	};
+
+	const searchData = () => {
 		setLoading(true);
 		axios
 			.post(
@@ -54,7 +79,19 @@ const AdminStudents = () => {
 			})
 			.catch((err) => console.log(err));
 		setLoading(false);
+	};
+
+	useEffect(() => {
+		fetchData();
+	}, []);
+	useEffect(() => {
+		searchData();
 	}, [search]);
+	useEffect(() => {
+		removeData(removeStudent);
+		fetchData();
+	}, [removeStudent]);
+
 	useEffect(() => {}, [studentData]);
 
 	return (
@@ -98,12 +135,38 @@ const AdminStudents = () => {
 						{studentData.length === 0 ? (
 							<NoData />
 						) : (
-							<div>
+							<div className="student-card-container">
 								{studentData.map((p) => {
 									return (
-										<div key={p._id}>
+										<div
+											key={p._id}
+											className="student-card"
+										>
 											<p>{JSON.stringify(p)}</p>
-											<br />
+											<div className="active-btn-container">
+												<button
+													className="btn active-btn"
+													value={p._id}
+													onClick={(e) =>
+														handleEdit(
+															e.target.value
+														)
+													}
+												>
+													Edit
+												</button>
+												<button
+													className="btn red-btn"
+													value={p._id}
+													onClick={(e) =>
+														handleRemove(
+															e.target.value
+														)
+													}
+												>
+													Remove
+												</button>
+											</div>
 										</div>
 									);
 								})}

@@ -16,6 +16,7 @@ import StudentJobs from "./components/student/jobs/StudentJobs";
 import StudentJobApplications from "./components/student/jobs/StudentJobApplications";
 import StudentApprovedJobs from "./components/student/jobs/StudentApprovedJobs";
 import StudentProfile from "./components/student/profile/StudentProfile";
+import AddStudent from "./components/admin/forms/AddStudent";
 
 function App() {
 	return (
@@ -39,6 +40,11 @@ function App() {
 					<Route
 						path="/admin/approvedjobs"
 						element={<AdminApprovedJobs />}
+					/>
+					<Route path="/admin/addstudent" element={<AddStudent />} />
+					<Route
+						path="/admin/addjob"
+						element={<h1>Add New Job</h1>}
 					/>
 				</Route>
 				{/* Student Route */}

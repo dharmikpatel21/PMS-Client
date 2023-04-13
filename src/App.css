@@ -98,6 +98,16 @@ svg {
 	overflow-x: scroll;
 	padding: 1rem;
 }
+.student-card-container {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+.student-card {
+	border: 2px solid var(--primary-color);
+	overflow-x: scroll;
+	padding: 1rem;
+}
 .active-btn-container {
 	display: flex;
 	justify-content: flex-end;

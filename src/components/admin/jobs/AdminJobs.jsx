@@ -9,7 +9,7 @@ const AdminJobs = () => {
 	const [searchBoxData, setSearchBoxData] = useState("");
 	const [search, setSearch] = useState("");
 	const [loading, setLoading] = useState(false);
-	const [removeJob, setRemoveJob] = useState();
+	const [removeJob, setRemoveJob] = useState("");
 	const [editJob, setEditJob] = useState();
 
 	function handleSearch() {
@@ -34,27 +34,7 @@ const AdminJobs = () => {
 			.catch((err) => console.log(err));
 		setLoading(false);
 	};
-	const removeData = (_id) => {
-		console.log("_id: " + _id);
-		axios
-			.delete(`http://localhost:5001/api/admin/fetch/jobs/${_id}`, {
-				headers: {
-					"auth-token": sessionStorage.getItem("auth-token"),
-				},
-			})
-			.then((res) => {
-				window.alert("Record deleted...");
-			})
-			.catch((err) => console.log(err));
-	};
-	useEffect(() => {
-		removeData(removeJob);
-		fetchData();
-	}, [removeJob]);
-	useEffect(() => {
-		fetchData();
-	}, []);
-	useEffect(() => {
+	const searchData = () => {
 		setLoading(true);
 		axios
 			.post(
@@ -75,8 +55,34 @@ const AdminJobs = () => {
 			})
 			.catch((err) => console.log(err));
 		setLoading(false);
+	};
+	const removeData = (_id) => {
+		if (_id === "" || !_id) return;
+		axios
+			.delete(`http://localhost:5001/api/admin/fetch/jobs/${_id}`, {
+				headers: {
+					"auth-token": sessionStorage.getItem("auth-token"),
+				},
+			})
+			.then((res) => {
+				window.alert("Record deleted...");
+			})
+			.catch((err) => console.log(err));
+	};
+
+	useEffect(() => {
+		fetchData();
+	}, []);
+	useEffect(() => {
+		searchData();
 	}, [search]);
+	useEffect(() => {
+		removeData(removeJob);
+		fetchData();
+	}, [removeJob]);
+
 	useEffect(() => {}, [jobData]);
+
 	return (
 		<main>
 			{loading ? (
