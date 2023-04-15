@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import StudentShowJobs from "./StudentShowJobs";
+import Loading from "../../Loading";
 
 const StudentJobs = () => {
 	const [jobData, setJobData] = useState([]);
 	const [searchBoxData, setSearchBoxData] = useState("");
 	const [search, setSearch] = useState("");
+	const [loading, setLoading] = useState(false);
+	const [applyJob, setApplyJob] = useState("");
 
 	function handleSearch() {
 		if (searchBoxData !== "") {
@@ -14,7 +17,8 @@ const StudentJobs = () => {
 		}
 	}
 
-	useEffect(() => {
+	const fetchData = () => {
+		setLoading(true);
 		axios
 			.get(`http://localhost:5001/api/student/fetch/jobs`, {
 				headers: {
@@ -27,9 +31,10 @@ const StudentJobs = () => {
 				});
 			})
 			.catch((err) => console.log(err));
-	}, []);
-
-	useEffect(() => {
+		setLoading(false);
+	};
+	const searchData = () => {
+		setLoading(true);
 		axios
 			.post(
 				`http://localhost:5001/api/student/fetch/jobs`,
@@ -48,8 +53,41 @@ const StudentJobs = () => {
 				});
 			})
 			.catch((err) => console.log(err));
+		setLoading(false);
+	};
+	const applyForJob = (id) => {
+		axios
+			.post(
+				"http://localhost:5001/api/student/apply",
+				{ jobId: id },
+				{
+					headers: {
+						"auth-token": sessionStorage.getItem("auth-token"),
+					},
+				}
+			)
+			.then((res) => {
+				window.alert(res.data.msg);
+			})
+			.catch((err) => {});
+	};
+
+	useEffect(() => {
+		fetchData();
+	}, []);
+
+	useEffect(() => {
+		searchData();
 	}, [search]);
-	useEffect(() => {}, [jobData]);
+	useEffect(() => {
+		if (!applyJob || applyJob === "") return;
+		applyForJob(applyJob);
+	}, [applyJob]);
+	useEffect(() => {
+		fetchData();
+	}, [jobData]);
+
+	if (loading) return <Loading />;
 
 	return (
 		<>
@@ -82,7 +120,11 @@ const StudentJobs = () => {
 					</button>
 				</div>
 			</div>
-			<StudentShowJobs data={jobData} applyBtn={true} />
+			<StudentShowJobs
+				data={jobData}
+				applyBtn={true}
+				setApplyJob={setApplyJob}
+			/>
 		</>
 	);
 };

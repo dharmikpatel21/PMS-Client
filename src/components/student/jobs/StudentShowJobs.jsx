@@ -1,9 +1,10 @@
 import React from "react";
 import NoData from "../../NoData";
 
-const StudentShowJobs = ({ data, applyBtn }) => {
+const StudentShowJobs = ({ data, applyBtn, setApplyJob }) => {
 	const handelApply = (id) => {
 		console.log(id);
+		setApplyJob(() => id);
 	};
 
 	if (data.length === 0) {
