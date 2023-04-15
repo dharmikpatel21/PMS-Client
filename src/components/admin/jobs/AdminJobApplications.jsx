@@ -7,6 +7,7 @@ const AdminJobApplications = () => {
 	const [jobApplications, setJobApplications] = useState([]);
 	const [searchBoxData, setSearchBoxData] = useState("");
 	const [search, setSearch] = useState("");
+	const [approvedJob, setApprovedJob] = useState("");
 	const [loading, setLoading] = useState(false);
 
 	function handleSearch() {
@@ -16,7 +17,7 @@ const AdminJobApplications = () => {
 		}
 	}
 
-	useEffect(() => {
+	const fetchData = () => {
 		setLoading(true);
 		axios
 			.get("http://localhost:5001/api/admin/fetch/jobapplications", {
@@ -26,13 +27,12 @@ const AdminJobApplications = () => {
 			})
 			.then((res) => {
 				// console.log(res.data);
-				setJobApplications(res.data);
+				setJobApplications((prev) => res.data);
 			})
 			.catch((err) => console.log(err));
 		setLoading(false);
-	}, []);
-
-	useEffect(() => {
+	};
+	const searchData = () => {
 		setLoading(true);
 		axios
 			.post(
@@ -53,8 +53,46 @@ const AdminJobApplications = () => {
 			})
 			.catch((err) => console.log(err));
 		setLoading(false);
+	};
+	const approveJobApplication = (id) => {
+		axios
+			.post(
+				"http://localhost:5001/api/admin/add/approvejob",
+				{
+					applicationid: id,
+				},
+				{
+					headers: {
+						"auth-token": sessionStorage.getItem("auth-token"),
+					},
+				}
+			)
+			.then((res) => {
+				// console.log(res.data);
+				window.alert(res.data.msg);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+
+	useEffect(() => {
+		fetchData();
+	}, []);
+
+	useEffect(() => {
+		searchData();
 	}, [search]);
-	useEffect(() => {}, [jobApplications]);
+
+	useEffect(() => {
+		if (approvedJob === null || approvedJob === "") return;
+		approveJobApplication(approvedJob);
+		fetchData();
+	}, [approvedJob]);
+
+	useEffect(() => {
+		fetchData();
+	}, [jobApplications]);
 
 	return (
 		<main>
@@ -96,6 +134,7 @@ const AdminJobApplications = () => {
 					<AdminShowJobsStudent
 						data={jobApplications}
 						approveBtn={true}
+						setApprovedJob={setApprovedJob}
 					/>
 				</>
 			)}

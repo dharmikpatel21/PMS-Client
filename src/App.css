@@ -11,6 +11,7 @@
 	--bg-color: rgb(247, 248, 252);
 	--light-red-color: rgba(255, 101, 101, 0.909);
 	--red-color: rgb(255, 0, 0);
+	--green-color: rgb(75, 181, 67);
 	--box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 	--box-radius-md: 8px;
 	--box-radius-sm: 5px;
@@ -41,7 +42,7 @@
 }
 main {
 	display: block;
-	min-height: calc(100vh - var(--header-height));
+	min-height: calc(100vh - var(--header-height) - 10%);
 	width: 100%;
 }
 
@@ -126,6 +127,16 @@ svg {
 }
 .red-btn {
 	background-color: var(--red-color);
+	color: white;
+	padding: 0.5rem 1rem;
+	border: none;
+	outline: none;
+	border-radius: 8px;
+	transition: all 0.2s ease;
+	cursor: pointer;
+}
+.success-btn {
+	background-color: var(--green-color);
 	color: white;
 	padding: 0.5rem 1rem;
 	border: none;

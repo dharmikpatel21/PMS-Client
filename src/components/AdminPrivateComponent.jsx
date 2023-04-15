@@ -10,6 +10,10 @@ const AdminPrivateComponent = () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
+		document.title = "PMS | Admin";
+	}, []);
+
+	useEffect(() => {
 		if (sessionStorage.getItem("auth-token")) {
 			setLoggedin(true);
 		}

@@ -1,9 +1,9 @@
 import React from "react";
 import NoData from "../../NoData";
 
-const AdminShowJobsStudent = ({ data, approveBtn }) => {
-	const handleApply = (id) => {
-		console.log(id);
+const AdminShowJobsStudent = ({ data, approveBtn, setApprovedJob }) => {
+	const handleApprove = (id) => {
+		setApprovedJob(id);
 	};
 	const handleViewProfile = (email) => {
 		console.log(email);
@@ -31,13 +31,17 @@ const AdminShowJobsStudent = ({ data, approveBtn }) => {
 										View Profile
 									</button>
 									<button
-										className="btn active-btn"
+										className={
+											p.approved
+												? "btn success-btn"
+												: "btn active-btn"
+										}
 										value={p._id}
 										onClick={(e) =>
-											handleApply(e.target.value)
+											handleApprove(e.target.value)
 										}
 									>
-										Approve
+										{p.approved ? "Approved" : "Approve"}
 									</button>
 								</>
 							) : (

@@ -33,7 +33,7 @@ const AddStudent = () => {
 				}
 			)
 			.then((res) => {
-				console.log(res.data);
+				// console.log(res.data);
 				window.alert(res.data.msg);
 			})
 			.catch((err) => {
