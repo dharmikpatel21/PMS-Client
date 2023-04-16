@@ -17,7 +17,36 @@ const AdminShowJobsStudent = ({ data, approveBtn, setApprovedJob }) => {
 			{data.map((p) => {
 				return (
 					<div className="job-card" key={p._id}>
-						<p>{JSON.stringify(p)}</p>
+						<div className="row">
+							<span>Company name:</span>
+							<span>{p.name}</span>
+						</div>
+						<div className="row">
+							<span>email:</span>
+							<span>{p.email}</span>
+						</div>
+						<div className="row">
+							<span>student email</span>
+							<span>{p.studentemail}</span>
+						</div>
+						<div className="row">
+							<span>location</span>
+							<span>{p.location}</span>
+						</div>
+						<div className="row">
+							<span>jobTitle</span>
+							<span>{p.jobTitle}</span>
+						</div>
+						<div className="row">
+							<span>jobDescription</span>
+							<span>{p.jobDescription}</span>
+						</div>
+						<div className="row">
+							<span>hiring Status:</span>
+							<span>{p.hiringStatus ? "Open" : "Closed"}</span>
+						</div>
+
+						{/* buttons */}
 						<div className="active-btn-container">
 							{approveBtn ? (
 								<>

@@ -30,8 +30,10 @@ const StudentJobs = () => {
 					return res.data;
 				});
 			})
-			.catch((err) => console.log(err));
-		setLoading(false);
+			.catch((err) => console.log(err))
+			.finally(() => {
+				setLoading(false);
+			});
 	};
 	const searchData = () => {
 		setLoading(true);
@@ -52,8 +54,10 @@ const StudentJobs = () => {
 					return res.data;
 				});
 			})
-			.catch((err) => console.log(err));
-		setLoading(false);
+			.catch((err) => console.log(err))
+			.finally(() => {
+				setLoading(false);
+			});
 	};
 	const applyForJob = (id) => {
 		axios
@@ -83,11 +87,14 @@ const StudentJobs = () => {
 		if (!applyJob || applyJob === "") return;
 		applyForJob(applyJob);
 	}, [applyJob]);
-	useEffect(() => {
-		fetchData();
-	}, [jobData]);
+	// useEffect(() => {}, [jobData]);
 
-	if (loading) return <Loading />;
+	if (loading)
+		return (
+			<main>
+				<Loading />
+			</main>
+		);
 
 	return (
 		<>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import Header from "./student/Header";
 import Sidebar from "./student/Sidebar";
+import "../css/cards.css";
 
 const StudentPrivateComponent = () => {
 	const [activeNavToggler, setActiveNavToggler] = useState(false);

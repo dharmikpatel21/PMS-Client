@@ -1,11 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import StudentShowJobs from "./StudentShowJobs";
+import Loading from "../../Loading";
 
 const StudentJobApplications = () => {
 	const [jobAppicationData, setJobApplicationData] = useState([]);
 	const [searchBoxData, setSearchBoxData] = useState("");
 	const [search, setSearch] = useState("");
+	const [loading, setLoading] = useState(false);
 
 	function handleSearch() {
 		if (searchBoxData !== "") {
@@ -13,7 +15,9 @@ const StudentJobApplications = () => {
 			console.log(searchBoxData);
 		}
 	}
-	useEffect(() => {
+
+	const fetchJobApplication = () => {
+		setLoading(true);
 		axios
 			.get("http://localhost:5001/api/student/fetch/appliedjobs", {
 				headers: {
@@ -27,10 +31,14 @@ const StudentJobApplications = () => {
 			})
 			.catch((err) => {
 				console.log(err);
+			})
+			.finally(() => {
+				setLoading(false);
 			});
-	}, []);
+	};
 
-	useEffect(() => {
+	const searchJobApplication = () => {
+		setLoading(true);
 		axios
 			.post(
 				`http://localhost:5001/api/student/fetch/appliedjobs`,
@@ -48,9 +56,27 @@ const StudentJobApplications = () => {
 					return res.data;
 				});
 			})
-			.catch((err) => console.log(err));
+			.catch((err) => console.log(err))
+			.finally(() => {
+				setLoading(false);
+			});
+	};
+
+	useEffect(() => {
+		fetchJobApplication();
+	}, []);
+
+	useEffect(() => {
+		searchJobApplication();
 	}, [search]);
-	useEffect(() => {}, [jobAppicationData]);
+	// useEffect(() => {}, [jobAppicationData]);
+
+	if (loading)
+		return (
+			<main>
+				<Loading />
+			</main>
+		);
 
 	return (
 		<>

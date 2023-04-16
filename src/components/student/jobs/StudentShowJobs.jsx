@@ -13,9 +13,29 @@ const StudentShowJobs = ({ data, applyBtn, setApplyJob }) => {
 	return (
 		<div className="job-card-container">
 			{data.map((p) => {
+				if (p.hiringStatus === false) return;
 				return (
 					<div className="job-card" key={p._id}>
-						<p>{JSON.stringify(p)}</p>
+						<div className="row">
+							<span>Company Name:</span>
+							<span>{p.name}</span>
+						</div>
+						<div className="row">
+							<span>Company Email:</span>
+							<span>{p.email}</span>
+						</div>
+						<div className="row">
+							<span>Location:</span>
+							<span>{p.location}</span>
+						</div>
+						<div className="row">
+							<span>jobTitle:</span>
+							<span>{p.jobTitle}</span>
+						</div>
+						<div className="row">
+							<span>jobDescription:</span>
+							<span>{p.jobDescription}</span>
+						</div>
 						{applyBtn ? (
 							<div className="active-btn-container">
 								<button

@@ -11,6 +11,7 @@ const AdminDashboard = () => {
 	const [loading, setLoading] = useState(false);
 
 	const fetchDashboardData = () => {
+		setLoading(true);
 		axios
 			.get("http://localhost:5001/api/admin/fetch/dashboard", {
 				headers: {
@@ -22,9 +23,13 @@ const AdminDashboard = () => {
 			})
 			.catch((err) => {
 				console.log(err);
+			})
+			.finally(() => {
+				setLoading(false);
 			});
 	};
 	const fetchJobData = () => {
+		setLoading(true);
 		axios
 			.get("http://localhost:5001/api/admin/fetch/jobs", {
 				headers: {
@@ -39,40 +44,40 @@ const AdminDashboard = () => {
 			})
 			.catch((err) => {
 				console.log(err);
+			})
+			.finally(() => {
+				setLoading(false);
 			});
 	};
 	useEffect(() => {
-		setLoading(true);
 		fetchDashboardData();
 		fetchJobData();
-		setLoading(false);
 	}, []);
+	useEffect(() => {}, [loading]);
+
+	if (loading) return <Loading />;
 
 	return (
 		<>
-			{loading ? (
-				<Loading />
-			) : (
-				<main>
-					<div className="card-container">
-						{dashData.map((data) => (
-							<DashboardCard
-								key={data._id}
-								label={data.label}
-								value={data.value}
-							/>
-						))}
-					</div>
-
-					<div className="dashboard-table-grid">
-						<DashTable
-							title={"Jobs"}
-							data={jobData}
-							link={"/admin/jobs"}
+			<main>
+				<div className="card-container">
+					{dashData.map((data) => (
+						<DashboardCard
+							key={data._id}
+							label={data.label}
+							value={data.value}
 						/>
-					</div>
-				</main>
-			)}
+					))}
+				</div>
+
+				<div className="dashboard-table-grid">
+					<DashTable
+						title={"Jobs"}
+						data={jobData}
+						link={"/admin/jobs"}
+					/>
+				</div>
+			</main>
 		</>
 	);
 };

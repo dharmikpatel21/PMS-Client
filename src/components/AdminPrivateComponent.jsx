@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import Header from "./admin/Header";
 import Sidebar from "./admin/Sidebar";
+import "../css/cards.css";
 
 const AdminPrivateComponent = () => {
 	const [activeNavToggler, setActiveNavToggler] = useState(false);
