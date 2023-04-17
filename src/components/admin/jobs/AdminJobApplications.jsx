@@ -76,6 +76,7 @@ const AdminJobApplications = () => {
 			.then((res) => {
 				// console.log(res.data);
 				window.alert(res.data.msg);
+				fetchData();
 			})
 			.catch((err) => {
 				console.log(err);
@@ -93,7 +94,6 @@ const AdminJobApplications = () => {
 	useEffect(() => {
 		if (approvedJob === null || approvedJob === "") return;
 		approveJobApplication(approvedJob);
-		fetchData();
 	}, [approvedJob]);
 
 	useEffect(() => {}, [jobApplications]);

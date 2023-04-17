@@ -71,6 +71,7 @@ const AdminJobs = () => {
 			})
 			.then((res) => {
 				window.alert("Record deleted...");
+				fetchData();
 			})
 			.catch((err) => console.log(err))
 			.finally(() => {
@@ -86,7 +87,6 @@ const AdminJobs = () => {
 	}, [search]);
 	useEffect(() => {
 		removeData(removeJob);
-		fetchData();
 	}, [removeJob]);
 
 	useEffect(() => {}, [jobData]);

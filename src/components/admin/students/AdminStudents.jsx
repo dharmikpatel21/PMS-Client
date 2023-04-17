@@ -56,6 +56,7 @@ const AdminStudents = () => {
 			})
 			.then((res) => {
 				window.alert("Record deleted...");
+				fetchData();
 			})
 			.catch((err) => console.log(err));
 	};
@@ -93,10 +94,9 @@ const AdminStudents = () => {
 	}, [search]);
 	useEffect(() => {
 		removeData(removeStudent);
-		fetchData();
 	}, [removeStudent]);
 
-	useEffect(() => {}, [studentData]);
+	useEffect(() => {}, [studentData, loading]);
 
 	if (loading)
 		return (

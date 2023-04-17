@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "../../../css/form.css";
+import Loading from "../../Loading";
 
 const AddStudent = () => {
 	const [enrollmentNo, setEnrollmentNo] = useState();
 	const [name, setName] = useState();
 	const [email, setEmail] = useState();
+	const [password, setPassword] = useState();
 	const [department, setDepartment] = useState("");
 	const [division, setDivision] = useState("");
 	const [cpi, setCpi] = useState();
+
+	const [loading, setLoading] = useState(false);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -16,16 +20,27 @@ const AddStudent = () => {
 		if (
 			!enrollmentNo ||
 			!email ||
+			!password ||
 			!name ||
 			!cpi ||
 			department === "" ||
 			division === ""
 		)
 			return window.alert("No empty field accepted");
+
+		setLoading(true);
 		axios
 			.post(
 				"http://localhost:5001/api/admin/add/student",
-				{ enrollmentNo, name, email, department, division, cpi },
+				{
+					enrollmentNo,
+					name,
+					email,
+					password,
+					department,
+					division,
+					cpi,
+				},
 				{
 					headers: {
 						"auth-token": sessionStorage.getItem("auth-token"),
@@ -38,8 +53,19 @@ const AddStudent = () => {
 			})
 			.catch((err) => {
 				console.log(err);
+			})
+			.finally(() => {
+				setLoading(false);
 			});
 	};
+
+	if (loading)
+		return (
+			<main>
+				<Loading />
+			</main>
+		);
+
 	return (
 		<main>
 			<div className="form-container-wrapper">
@@ -78,6 +104,18 @@ const AddStudent = () => {
 									placeholder="Enter Email"
 									value={email}
 									onChange={(e) => setEmail(e.target.value)}
+									required
+								/>
+							</div>
+							<div className="input-box input-box-50">
+								<span className="input-label">Password</span>
+								<input
+									type="password"
+									placeholder="Enter Password"
+									value={password}
+									onChange={(e) =>
+										setPassword(e.target.value)
+									}
 									required
 								/>
 							</div>

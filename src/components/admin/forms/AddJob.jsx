@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Loading from "../../Loading";
 import "../../../css/form.css";
 
 const AddJob = () => {
@@ -10,16 +11,10 @@ const AddJob = () => {
 	const [jobDescription, setJobDescription] = useState();
 	const [hiringStatus, setHiringStatus] = useState();
 
+	const [loading, setLoading] = useState(false);
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		// console.log(
-		// 	companyName,
-		// 	email,
-		// 	location,
-		// 	jobTitle,
-		// 	jobDescription,
-		// 	hiringStatus
-		// );
 		if (
 			!companyName ||
 			!email ||
@@ -29,6 +24,8 @@ const AddJob = () => {
 			hiringStatus == null
 		)
 			return window.alert("No empty field accepted");
+
+		setLoading(true);
 		axios
 			.post(
 				"http://localhost:5001/api/admin/add/job",
@@ -52,8 +49,26 @@ const AddJob = () => {
 			})
 			.catch((err) => {
 				console.log(err);
+			})
+			.finally(() => {
+				setLoading(false);
 			});
+		setCompanyName("");
+		setEmail("");
+		setLocation("");
+		setJobTitle("");
+		setJobDescription("");
+		setHiringStatus("");
 	};
+
+	useEffect(() => {}, [loading]);
+
+	if (loading)
+		return (
+			<main>
+				<Loading />
+			</main>
+		);
 	return (
 		<main>
 			<div className="form-container-wrapper">
@@ -151,7 +166,7 @@ const AddJob = () => {
 						</div>
 						<div className="button">
 							<button className="form-btn" onClick={handleSubmit}>
-								Add Student
+								Add Job
 							</button>
 						</div>
 					</form>

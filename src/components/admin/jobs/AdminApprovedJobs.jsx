@@ -16,7 +16,7 @@ const AdminApprovedJobs = () => {
 		}
 	}
 
-	useEffect(() => {
+	const fetchApprovedJobData = () => {
 		setLoading(true);
 		axios
 			.get("http://localhost:5001/api/admin/fetch/approvedjobs", {
@@ -34,9 +34,9 @@ const AdminApprovedJobs = () => {
 			.finally(() => {
 				setLoading(false);
 			});
-	}, []);
+	};
 
-	useEffect(() => {
+	const searchApprovedJobData = () => {
 		setLoading(true);
 		axios
 			.post(
@@ -59,7 +59,16 @@ const AdminApprovedJobs = () => {
 			.finally(() => {
 				setLoading(false);
 			});
+	};
+
+	useEffect(() => {
+		fetchApprovedJobData();
+	}, []);
+
+	useEffect(() => {
+		searchApprovedJobData();
 	}, [search]);
+
 	useEffect(() => {}, [approvedJobsData]);
 
 	if (loading)
