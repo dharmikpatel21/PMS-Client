@@ -23,31 +23,50 @@ const AdminShowJobs = ({ data, setRemoveJob, setEditJob }) => {
 			{data.map((p) => {
 				return (
 					<div className="job-card" key={p._id}>
-						<div className="row">
-							<span>Company Name:</span>
-							<span>{p.name}</span>
+						<div className="job-details">
+							<div className="row">
+								<span>Company Name:</span>
+								<span>{p.name}</span>
+							</div>
+							<div className="row">
+								<span>Company Email:</span>
+								<span>{p.email}</span>
+							</div>
+							<div className="row">
+								<span>Location:</span>
+								<span>{p.location}</span>
+							</div>
+							<div className="row">
+								<span>jobTitle:</span>
+								<span>{p.jobTitle}</span>
+							</div>
+							<div className="row">
+								<span>jobDescription:</span>
+								<span>{p.jobDescription}</span>
+							</div>
+							<div className="row">
+								<span>hiring Status:</span>
+								<span>
+									{p.hiringStatus ? "Open" : "Closed"}
+								</span>
+							</div>
+							<div className="company-img-container">
+								<img
+									src={
+										"/img/companies/" +
+										p.name
+											.toLowerCase()
+											.replace(" ", "-")
+											.replace(".", "") +
+										".png"
+									}
+									alt={p.name
+										.toLowerCase()
+										.replace(" ", "-")
+										.replace(".", "")}
+								/>
+							</div>
 						</div>
-						<div className="row">
-							<span>Company Email:</span>
-							<span>{p.email}</span>
-						</div>
-						<div className="row">
-							<span>Location:</span>
-							<span>{p.location}</span>
-						</div>
-						<div className="row">
-							<span>jobTitle:</span>
-							<span>{p.jobTitle}</span>
-						</div>
-						<div className="row">
-							<span>jobDescription:</span>
-							<span>{p.jobDescription}</span>
-						</div>
-						<div className="row">
-							<span>hiring Status:</span>
-							<span>{p.hiringStatus ? "Open" : "Closed"}</span>
-						</div>
-
 						{/* buttons */}
 						<div className="active-btn-container">
 							<button
