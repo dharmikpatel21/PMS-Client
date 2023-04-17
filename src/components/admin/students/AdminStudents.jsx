@@ -2,13 +2,16 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Loading from "../../Loading";
 import NoData from "../../NoData";
+import EditStudent from "../forms/EditStudent";
 
 const AdminStudents = () => {
 	const [studentData, setStudentData] = useState([]);
 	const [searchBoxData, setSearchBoxData] = useState("");
 	const [search, setSearch] = useState("");
 	const [loading, setLoading] = useState(false);
-	const [removeStudent, setRemoveStudent] = useState();
+	const [removeStudent, setRemoveStudent] = useState("");
+	const [editStudent, setEditStudent] = useState("");
+	const [showEditForm, setShowEditForm] = useState(false);
 
 	function handleSearch() {
 		if (searchBoxData !== "") {
@@ -17,7 +20,9 @@ const AdminStudents = () => {
 		}
 	}
 	const handleEdit = (_id) => {
-		console.log("Edit: " + _id);
+		// console.log("Edit: " + _id);
+		setEditStudent(_id);
+		setShowEditForm(true);
 	};
 	const handleRemove = (_id) => {
 		const ans = window.confirm("Are you sure to delete record?");
@@ -85,6 +90,37 @@ const AdminStudents = () => {
 				setLoading(false);
 			});
 	};
+	const updateStudent = (id, data) => {
+		if (!id || id === "") return;
+		axios
+			.post(
+				`http://localhost:5001/api/admin/update/student/${id}`,
+				{
+					enrollmentNo: data.enrollmentNo,
+					name: data.name,
+					email: data.email,
+					department: data.department,
+					division: data.division,
+					cpi: data.cpi,
+				},
+				{
+					headers: {
+						"auth-token": sessionStorage.getItem("auth-token"),
+					},
+				}
+			)
+			.then((res) => {
+				setShowEditForm(false);
+				fetchData();
+				window.alert(res.data.msg);
+			})
+			.catch((err) => {
+				console.log(err);
+			})
+			.finally(() => {
+				setEditStudent("");
+			});
+	};
 
 	useEffect(() => {
 		fetchData();
@@ -108,6 +144,15 @@ const AdminStudents = () => {
 	return (
 		<main>
 			<>
+				{showEditForm ? (
+					<EditStudent
+						editStudent={editStudent}
+						updateStudent={updateStudent}
+						setShowEditForm={setShowEditForm}
+					/>
+				) : (
+					<></>
+				)}
 				<div className="search-area flex justify-between items-center">
 					<h1>Students</h1>
 					<div className="search-wrapper flex gap-0">

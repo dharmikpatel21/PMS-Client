@@ -14,9 +14,6 @@
 .student-card .row span:first-child {
 	text-transform: uppercase;
 	font-weight: bold;
-}
-
-.student-card .row span {
 	width: min(175px, 50%);
 }
 
@@ -40,9 +37,6 @@
 .job-card .row span:first-child {
 	text-transform: uppercase;
 	font-weight: bold;
-}
-
-.job-card .row span {
 	width: min(175px, 50%);
 }
 
@@ -65,7 +59,7 @@
 	top: 0;
 	right: 0;
 	height: 100%;
-	opacity: 0.4;
+	opacity: 0.3;
 	padding: 30px;
 	overflow: hidden;
 }

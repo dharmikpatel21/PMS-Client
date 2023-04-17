@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import AdminShowJobsStudent from "./AdminShowJobsStudent";
 import Loading from "../../Loading";
+import StudentProfile from "../students/StudentProfile";
 
 const AdminJobApplications = () => {
 	const [jobApplications, setJobApplications] = useState([]);
@@ -9,6 +10,8 @@ const AdminJobApplications = () => {
 	const [search, setSearch] = useState("");
 	const [approvedJob, setApprovedJob] = useState("");
 	const [loading, setLoading] = useState(false);
+	const [showProfile, setShowProfile] = useState("");
+	const [profileData, setProfileData] = useState("");
 
 	function handleSearch() {
 		if (searchBoxData !== "") {
@@ -96,7 +99,7 @@ const AdminJobApplications = () => {
 		approveJobApplication(approvedJob);
 	}, [approvedJob]);
 
-	useEffect(() => {}, [jobApplications]);
+	// useEffect(() => {}, [jobApplications]);
 
 	if (loading)
 		return (
@@ -107,6 +110,14 @@ const AdminJobApplications = () => {
 
 	return (
 		<main>
+			{showProfile ? (
+				<StudentProfile
+					profileData={profileData}
+					setShowProfile={setShowProfile}
+				/>
+			) : (
+				<></>
+			)}
 			<div className="search-area flex justify-between items-center">
 				<h1>Job Applications</h1>
 				<div className="search-wrapper flex gap-0">
@@ -140,6 +151,8 @@ const AdminJobApplications = () => {
 				data={jobApplications}
 				approveBtn={true}
 				setApprovedJob={setApprovedJob}
+				setProfileData={setProfileData}
+				setShowProfile={setShowProfile}
 			/>
 		</main>
 	);

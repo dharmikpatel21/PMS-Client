@@ -1,10 +1,20 @@
 import React from "react";
 import NoData from "../../NoData";
 
-const StudentShowJobs = ({ data, applyBtn, setApplyJob }) => {
+const StudentShowJobs = ({
+	data,
+	applyBtn,
+	setApplyJob,
+	removeBtn,
+	setRemoveApplicationData,
+}) => {
 	const handelApply = (id) => {
 		console.log(id);
 		setApplyJob(() => id);
+	};
+	const handelRemove = (id) => {
+		console.log(id);
+		setRemoveApplicationData(id);
 	};
 
 	if (data.length === 0) {
@@ -66,6 +76,20 @@ const StudentShowJobs = ({ data, applyBtn, setApplyJob }) => {
 									}}
 								>
 									Apply
+								</button>
+							</div>
+						) : null}
+						{/* delete button */}
+						{removeBtn ? (
+							<div className="active-btn-container">
+								<button
+									className="btn red-btn"
+									value={p._id}
+									onClick={(e) => {
+										handelRemove(e.target.value);
+									}}
+								>
+									Remove
 								</button>
 							</div>
 						) : null}

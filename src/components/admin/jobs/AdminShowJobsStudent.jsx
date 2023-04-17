@@ -1,12 +1,19 @@
 import React from "react";
 import NoData from "../../NoData";
 
-const AdminShowJobsStudent = ({ data, approveBtn, setApprovedJob }) => {
+const AdminShowJobsStudent = ({
+	data,
+	approveBtn,
+	setApprovedJob,
+	setProfileData,
+	setShowProfile,
+}) => {
 	const handleApprove = (id) => {
 		setApprovedJob(id);
 	};
 	const handleViewProfile = (email) => {
-		console.log(email);
+		setShowProfile(true);
+		setProfileData(email);
 	};
 
 	if (data.length === 0) {
@@ -27,19 +34,19 @@ const AdminShowJobsStudent = ({ data, approveBtn, setApprovedJob }) => {
 								<span>{p.email}</span>
 							</div>
 							<div className="row">
-								<span>student email</span>
+								<span>student email:</span>
 								<span>{p.studentemail}</span>
 							</div>
 							<div className="row">
-								<span>location</span>
+								<span>location:</span>
 								<span>{p.location}</span>
 							</div>
 							<div className="row">
-								<span>jobTitle</span>
+								<span>jobTitle:</span>
 								<span>{p.jobTitle}</span>
 							</div>
 							<div className="row">
-								<span>jobDescription</span>
+								<span>jobDescription:</span>
 								<span>{p.jobDescription}</span>
 							</div>
 							<div className="row">

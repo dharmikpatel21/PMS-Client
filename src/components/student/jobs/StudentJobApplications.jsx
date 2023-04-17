@@ -7,6 +7,7 @@ const StudentJobApplications = () => {
 	const [jobAppicationData, setJobApplicationData] = useState([]);
 	const [searchBoxData, setSearchBoxData] = useState("");
 	const [search, setSearch] = useState("");
+	const [removeApplicationData, setRemoveApplicationData] = useState("");
 	const [loading, setLoading] = useState(false);
 
 	function handleSearch() {
@@ -62,6 +63,27 @@ const StudentJobApplications = () => {
 			});
 	};
 
+	const removeJobApplication = (_id) => {
+		if (_id === "" || !_id) return;
+		axios
+			.delete(
+				`http://localhost:5001/api/student/fetch/appliedjobs/${_id}`,
+				{
+					headers: {
+						"auth-token": sessionStorage.getItem("auth-token"),
+					},
+				}
+			)
+			.then((res) => {
+				fetchJobApplication();
+				window.alert(res.data.msg);
+			})
+			.catch((err) => console.log(err))
+			.finally(() => {
+				setJobApplicationData("");
+			});
+	};
+
 	useEffect(() => {
 		fetchJobApplication();
 	}, []);
@@ -69,6 +91,11 @@ const StudentJobApplications = () => {
 	useEffect(() => {
 		searchJobApplication();
 	}, [search]);
+
+	useEffect(() => {
+		removeJobApplication(removeApplicationData);
+	}, [removeApplicationData]);
+
 	// useEffect(() => {}, [jobAppicationData]);
 
 	if (loading)
@@ -109,7 +136,11 @@ const StudentJobApplications = () => {
 					</button>
 				</div>
 			</div>
-			<StudentShowJobs data={jobAppicationData} />
+			<StudentShowJobs
+				data={jobAppicationData}
+				removeBtn={true}
+				setRemoveApplicationData={setRemoveApplicationData}
+			/>
 		</>
 	);
 };
