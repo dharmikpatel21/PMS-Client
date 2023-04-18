@@ -60,15 +60,11 @@ const EditStudent = ({ editStudent, setShowEditForm, updateStudent }) => {
 		// );
 		e.preventDefault();
 		if (
-			!enrollmentNo ||
 			!name ||
-			!email ||
 			!department ||
 			!division ||
 			!cpi ||
-			enrollmentNo === "" ||
 			name === "" ||
-			email === "" ||
 			department === "" ||
 			division === "" ||
 			cpi === ""
@@ -76,9 +72,7 @@ const EditStudent = ({ editStudent, setShowEditForm, updateStudent }) => {
 			return window.alert("No empty field accepted");
 
 		updateStudent(editStudent, {
-			enrollmentNo,
 			name,
-			email,
 			department,
 			division,
 			cpi,
@@ -121,7 +115,7 @@ const EditStudent = ({ editStudent, setShowEditForm, updateStudent }) => {
 					/>
 				</svg>
 			</span>
-			<div className="edit-form-container-wrapper">
+			<div className="edit-form-container-wrapper" data-aos="zoom-in">
 				<div className="form-container">
 					<div className="title">Update Student</div>
 					<form>
@@ -132,12 +126,16 @@ const EditStudent = ({ editStudent, setShowEditForm, updateStudent }) => {
 								</span>
 								<input
 									type="text"
-									placeholder="Enter Enrollment No"
-									value={enrollmentNo}
-									onChange={(e) =>
-										setEnrollmentNo(e.target.value)
-									}
-									required
+									placeholder={enrollmentNo}
+									disabled
+								/>
+							</div>
+							<div className="input-box input-box-50">
+								<span className="input-label">Email</span>
+								<input
+									type="email"
+									placeholder={email}
+									disabled
 								/>
 							</div>
 							<div className="input-box input-box-50">
@@ -150,16 +148,7 @@ const EditStudent = ({ editStudent, setShowEditForm, updateStudent }) => {
 									required
 								/>
 							</div>
-							<div className="input-box input-box-50">
-								<span className="input-label">Email</span>
-								<input
-									type="email"
-									placeholder="Enter Email"
-									value={email}
-									onChange={(e) => setEmail(e.target.value)}
-									required
-								/>
-							</div>
+
 							<div className="input-box input-box-50">
 								<span className="input-label">Department</span>
 								<select

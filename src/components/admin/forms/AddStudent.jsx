@@ -69,7 +69,7 @@ const AddStudent = () => {
 	return (
 		<main>
 			<div className="form-container-wrapper">
-				<div className="form-container">
+				<div className="form-container" data-aos="zoom-in">
 					<div className="title">Add Student</div>
 					<form>
 						<div className="details">

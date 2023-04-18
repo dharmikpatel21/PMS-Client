@@ -80,7 +80,10 @@ const AdminApprovedJobs = () => {
 
 	return (
 		<main>
-			<div className="search-area flex justify-between items-center">
+			<div
+				className="search-area flex justify-between items-center"
+				data-aos="fade-down"
+			>
 				<h1>Approved Jobs</h1>
 				<div className="search-wrapper flex gap-0">
 					<input

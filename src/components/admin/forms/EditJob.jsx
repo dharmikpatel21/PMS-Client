@@ -103,7 +103,7 @@ const EditJob = ({ editJob, setShowEditForm, updateJob }) => {
 					/>
 				</svg>
 			</span>
-			<div className="edit-form-container-wrapper">
+			<div className="edit-form-container-wrapper" data-aos="zoom-in">
 				<div className="form-container">
 					<div className="title">Update Job</div>
 					<form>

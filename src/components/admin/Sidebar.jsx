@@ -155,12 +155,13 @@ const Sidebar = ({ activeNavToggler }) => {
 			className={activeNavToggler ? "sidebar show-sidebar" : "sidebar"}
 		>
 			<div className="sidebar-brand">
-				<h1>
-					<span className="PMS">P</span>MS
+				<h1 data-aos="zoom-out">
+					<span className="PMS">P</span>
+					MS
 				</h1>
 			</div>
 
-			<div className="sidebar-menu">
+			<div className="sidebar-menu" data-aos="fade-right">
 				<ul>
 					{menu.map((item) => {
 						return (

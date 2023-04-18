@@ -96,9 +96,7 @@ const AdminStudents = () => {
 			.post(
 				`http://localhost:5001/api/admin/update/student/${id}`,
 				{
-					enrollmentNo: data.enrollmentNo,
 					name: data.name,
-					email: data.email,
 					department: data.department,
 					division: data.division,
 					cpi: data.cpi,
@@ -153,7 +151,10 @@ const AdminStudents = () => {
 				) : (
 					<></>
 				)}
-				<div className="search-area flex justify-between items-center">
+				<div
+					className="search-area flex justify-between items-center"
+					data-aos="fade-down"
+				>
 					<h1>Students</h1>
 					<div className="search-wrapper flex gap-0">
 						<input
@@ -189,34 +190,65 @@ const AdminStudents = () => {
 						<div className="student-card-container">
 							{studentData.map((p) => {
 								return (
-									<div key={p._id} className="student-card">
-										<div className="row">
+									<div
+										key={p._id}
+										className="student-card"
+										data-aos="fade-left"
+									>
+										<div
+											className="row"
+											data-aos="fade-left"
+										>
 											<span>Enrollment No:</span>
 											<span>{p.enrollmentNo}</span>
 										</div>
-										<div className="row">
+										<div
+											className="row"
+											data-aos="fade-left"
+											data-aos-delay="100"
+										>
 											<span>Name:</span>
 											<span>{p.name}</span>
 										</div>
-										<div className="row">
+										<div
+											className="row"
+											data-aos="fade-left"
+											data-aos-delay="200"
+										>
 											<span>Email:</span>
 											<span>{p.email}</span>
 										</div>
-										<div className="row">
+										<div
+											className="row"
+											data-aos="fade-left"
+											data-aos-delay="300"
+										>
 											<span>Department:</span>
 											<span>{p.department}</span>
 										</div>
-										<div className="row">
+										<div
+											className="row"
+											data-aos="fade-left"
+											data-aos-delay="400"
+										>
 											<span>Division:</span>
 											<span>{p.division}</span>
 										</div>
-										<div className="row">
+										<div
+											className="row"
+											data-aos="fade-left"
+											data-aos-delay="500"
+										>
 											<span>CPI:</span>
 											<span>{p.cpi}</span>
 										</div>
 
 										{/* buttons */}
-										<div className="active-btn-container">
+										<div
+											className="active-btn-container"
+											data-aos="fade-up"
+											data-aos-offset="-500"
+										>
 											<button
 												className="btn active-btn"
 												value={p._id}

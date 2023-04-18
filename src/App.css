@@ -32,13 +32,17 @@
 	font-family: "Poppins", sans-serif;
 }
 
+body {
+	background-color: var(--bg-color);
+	overflow-x: hidden;
+}
+
 .main-page {
 	padding: 1rem;
 	margin-top: var(--header-height);
 	padding-top: 1rem;
 	padding-left: calc(var(--sidebar-width) + 1rem);
 	background: var(--bg-color);
-	overflow-x: scroll;
 }
 main {
 	display: block;

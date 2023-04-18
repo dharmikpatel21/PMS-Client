@@ -98,7 +98,10 @@ const StudentJobs = () => {
 
 	return (
 		<>
-			<div className="search-area flex justify-between items-center">
+			<div
+				className="search-area flex justify-between items-center"
+				data-aos="fade-down"
+			>
 				<h1>All Jobs</h1>
 				<div className="search-wrapper flex gap-0">
 					<input

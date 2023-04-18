@@ -46,8 +46,10 @@ const StudentLogin = () => {
 	if (!auth) {
 		return (
 			<main className="login-container">
-				<div className="heading">WELCOME BACK!</div>
-				<div className="container">
+				<div className="heading" data-aos="fade-left">
+					WELCOME BACK!
+				</div>
+				<div className="container" data-aos="zoom-in">
 					<div className="title">Student Login</div>
 					<div className="content">
 						<div className="form">

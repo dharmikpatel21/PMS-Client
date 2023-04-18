@@ -46,7 +46,7 @@ const StudentDashboard = () => {
 				console.log(err);
 			})
 			.finally(() => {
-				setLoading(false);
+				// setLoading(false);
 			});
 	};
 	useEffect(() => {
@@ -63,7 +63,7 @@ const StudentDashboard = () => {
 
 	return (
 		<main>
-			<div className="card-container">
+			<div className="card-container" data-aos="fade-down">
 				{dashData.map((data) => (
 					<DashboardCard
 						key={data._id}
@@ -73,7 +73,7 @@ const StudentDashboard = () => {
 				))}
 			</div>
 
-			<div className="dashboard-table-grid">
+			<div className="dashboard-table-grid" data-aos="fade-up">
 				<DashTable
 					title={"Available Jobs"}
 					data={jobData}

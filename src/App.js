@@ -19,6 +19,11 @@ import StudentProfile from "./components/student/profile/StudentProfile";
 import AddStudent from "./components/admin/forms/AddStudent";
 import AddJob from "./components/admin/forms/AddJob";
 
+import AOS from "aos";
+import "aos/dist/aos.css"; // You can also use <link> for styles
+// ..
+AOS.init();
+
 function App() {
 	return (
 		<BrowserRouter>

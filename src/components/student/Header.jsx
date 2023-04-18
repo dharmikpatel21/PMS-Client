@@ -22,7 +22,7 @@ const Header = ({ activeNavToggler, setActiveNavToggler }) => {
 
 	return (
 		<header className={activeNavToggler ? "header-shrink" : ""}>
-			<div className="menu-left">
+			<div className="menu-left" data-aos="fade-left">
 				<div
 					onClick={handleHamBurger}
 					className={
@@ -35,7 +35,7 @@ const Header = ({ activeNavToggler, setActiveNavToggler }) => {
 				</div>
 				<h2>PMS</h2>
 			</div>
-			<div className="logout-container">
+			<div className="logout-container" data-aos="fade-right">
 				<button
 					className="btn logout-btn flex justify-center items-center gap-0"
 					onClick={handleLogout}
@@ -59,7 +59,7 @@ const Header = ({ activeNavToggler, setActiveNavToggler }) => {
 					<span>Log Out</span>
 				</button>
 			</div>
-			<div className="user-wrapper">
+			<div className="user-wrapper" data-aos="fade-down">
 				<img
 					src={admin_profile}
 					width="50px"

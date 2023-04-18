@@ -66,47 +66,81 @@ const StudentProfile = ({ profileData, setShowProfile }) => {
 					</svg>
 				</span>
 				<div>
-					<h1>Student Profile</h1>
+					<h1
+						style={{ color: "var(--primary-color)" }}
+						data-aos="zoom-in"
+					>
+						Student Profile
+					</h1>
 					<hr />
 					<br />
 
 					<div className="profile-container">
-						<div className="student-profile">
+						<div
+							className="student-profile"
+							data-aos="fade-right"
+							data-aos-duration="400"
+						>
 							<div className="student-image">
 								<img
 									className="profile-img"
 									src={student_profile_img}
 									alt="."
+									data-aos="fade-right"
 								/>
 							</div>
-							<h3>{studentData.name}</h3>
+							<h3 data-aos="fade-right" data-aos-delay="200">
+								{studentData.name}
+							</h3>
 						</div>
-						<div className="student-info">
-							<h3>Student General Information</h3>
+						<div
+							className="student-info"
+							data-aos="fade-left"
+							data-aos-duration="400"
+							data-aos-delay="100"
+						>
+							<h3 data-aos="fade-down">
+								Student General Information
+							</h3>
 							<hr />
 							<table>
 								<tbody>
-									<tr>
+									<tr data-aos="fade-left">
 										<td>Enrollment no</td>
 										<td>{studentData.enrollmentNo}</td>
 									</tr>
-									<tr>
+									<tr
+										data-aos="fade-left"
+										data-aos-delay="100"
+									>
 										<td>Name</td>
 										<td>{studentData.name}</td>
 									</tr>
-									<tr>
+									<tr
+										data-aos="fade-left"
+										data-aos-delay="200"
+									>
 										<td>Email</td>
 										<td>{studentData.email}</td>
 									</tr>
-									<tr>
+									<tr
+										data-aos="fade-left"
+										data-aos-delay="300"
+									>
 										<td>Department</td>
 										<td>{studentData.department}</td>
 									</tr>
-									<tr>
+									<tr
+										data-aos="fade-left"
+										data-aos-delay="400"
+									>
 										<td>Division</td>
 										<td>{studentData.division}</td>
 									</tr>
-									<tr>
+									<tr
+										data-aos="fade-left"
+										data-aos-delay="500"
+									>
 										<td>CPI</td>
 										<td>{studentData.cpi}</td>
 									</tr>
