@@ -23,7 +23,7 @@ const StudentShowJobs = ({
 	return (
 		<div className="job-card-container">
 			{data.map((p) => {
-				if (p.hiringStatus === false) return;
+				if (p.hiringStatus === false) return <></>;
 				return (
 					<div className="job-card" key={p._id} data-aos="fade-left">
 						<div className="job-details">

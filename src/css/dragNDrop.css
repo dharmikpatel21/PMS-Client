@@ -1,0 +1,30 @@
+.upload-resume-container {
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	gap: 2rem;
+	width: 100%;
+}
+
+.upload-resume-container > label {
+	width: 350px;
+	height: 100px;
+	display: flex;
+	gap: 2rem;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	box-sizing: border-box;
+}
+
+.upload-resume-container > label > svg {
+	width: 100%;
+}
+
+.upload-resume-container > label > div {
+	display: flex;
+	gap: 10px;
+	max-height: 50px;
+}

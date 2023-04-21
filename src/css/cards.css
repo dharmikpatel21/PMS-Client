@@ -9,6 +9,7 @@
 	border: 2px solid var(--primary-color);
 	border-radius: 8px;
 	padding: 1rem;
+	box-shadow: var(--box-shadow-primary);
 }
 
 .student-card .row span:first-child {
@@ -33,6 +34,7 @@
 	border: 2px solid var(--primary-color);
 	border-radius: 8px;
 	padding: 1rem;
+	box-shadow: var(--box-shadow-primary);
 }
 .job-card .row span:first-child {
 	text-transform: uppercase;

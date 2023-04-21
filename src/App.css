@@ -13,6 +13,8 @@
 	--red-color: rgb(255, 0, 0);
 	--green-color: rgb(75, 181, 67);
 	--box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+	--box-shadow-primary: 0 10px 20px rgba(64, 77, 179, 0.19),
+		0 6px 6px rgba(64, 77, 179, 0.23);
 	--box-radius-md: 8px;
 	--box-radius-sm: 5px;
 	--transperent-color: rgba(255, 255, 255, 0.6);

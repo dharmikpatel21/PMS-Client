@@ -144,6 +144,32 @@ const StudentProfile = ({ profileData, setShowProfile }) => {
 										<td>CPI</td>
 										<td>{studentData.cpi}</td>
 									</tr>
+									{studentData.resumeLink ? (
+										<>
+											<tr
+												data-aos="fade-left"
+												data-aos-delay="600"
+											>
+												<td>Resume</td>
+												<td>
+													<a
+														style={{
+															color: "var(--primary-color)",
+														}}
+														href={
+															"http://localhost:5001/" +
+															studentData.resumeLink
+														}
+														target="_blank"
+													>
+														View Resume
+													</a>
+												</td>
+											</tr>
+										</>
+									) : (
+										<></>
+									)}
 								</tbody>
 							</table>
 						</div>

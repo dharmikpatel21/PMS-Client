@@ -6,7 +6,7 @@ const StudentEditProfile = ({
 	updateProfileData,
 	studentData,
 }) => {
-	const [email, setEmail] = useState(studentData.email);
+	// const [email, setEmail] = useState(studentData.email);
 	const [password, setPassword] = useState("");
 	const [confPassword, setConfPassword] = useState("");
 

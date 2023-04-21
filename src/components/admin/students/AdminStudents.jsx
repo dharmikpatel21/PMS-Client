@@ -243,6 +243,32 @@ const AdminStudents = () => {
 											<span>{p.cpi}</span>
 										</div>
 
+										<div
+											className="row"
+											data-aos="fade-left"
+											data-aos-delay="500"
+										>
+											<span>Resume:</span>
+											<span>
+												{p.resumeLink ? (
+													<a
+														style={{
+															color: "var(--primary-color)",
+														}}
+														href={
+															"http://localhost:5001/" +
+															p.resumeLink
+														}
+														target="_blank"
+													>
+														View Resume
+													</a>
+												) : (
+													<>Not Uploaded</>
+												)}
+											</span>
+										</div>
+
 										{/* buttons */}
 										<div
 											className="active-btn-container"

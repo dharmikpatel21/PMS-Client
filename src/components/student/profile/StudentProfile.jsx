@@ -1,22 +1,27 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Loading from "../../Loading";
 import "../../../css/profile.css";
 import student_profile_img from "../../../img/student_profile.jpg";
 import StudentEditProfile from "./StudentEditProfile";
+import StudentUploadResume from "./StudentUploadResume";
 
 const StudentProfile = () => {
 	const [studentData, setStudentData] = useState({});
 	const [loading, setLoading] = useState(false);
 	const [updateDetails, setUpdateDetails] = useState();
+	const [resumeFile, setResumeFile] = useState(null);
 	const [showEditForm, setShowEditForm] = useState(false);
-	const navigate = useNavigate();
+	const [showUploadResumeForm, setShowUploadResumeForm] = useState(false);
 
 	const handleEdit = (id) => {
 		console.log(id);
 		setUpdateDetails(id);
 		setShowEditForm(true);
+	};
+
+	const handleUploadResume = () => {
+		setShowUploadResumeForm(true);
 	};
 
 	const fetchProfileData = () => {
@@ -71,6 +76,36 @@ const StudentProfile = () => {
 			});
 	};
 
+	const uploadResume = () => {
+		if (!resumeFile || resumeFile === "")
+			return window.alert("Please Upload your Resume");
+		console.log(resumeFile.name);
+		if (resumeFile.name !== `${studentData.enrollmentNo}.pdf`) {
+			return window.alert(
+				"Please Rename Your resume with your enrollment no and upload again!"
+			);
+		}
+		console.log(resumeFile.name);
+		axios
+			.post(
+				`http://localhost:5001/api/student/upload/resume/${studentData._id}`,
+				{ myFile: resumeFile },
+				{
+					headers: {
+						"auth-token": sessionStorage.getItem("auth-token"),
+						"Content-Type": "multipart/form-data",
+					},
+				}
+			)
+			.then((res) => {
+				window.alert(res.data.msg);
+			})
+			.catch((err) => {
+				console.log(err);
+			})
+			.finally(() => {});
+	};
+
 	useEffect(() => {
 		fetchProfileData();
 	}, []);
@@ -90,6 +125,16 @@ const StudentProfile = () => {
 					updateDetails={updateDetails}
 					updateProfileData={updateProfileData}
 					studentData={studentData}
+				/>
+			) : (
+				<></>
+			)}
+			{showUploadResumeForm ? (
+				<StudentUploadResume
+					setShowUploadResumeForm={setShowUploadResumeForm}
+					setResumeFile={setResumeFile}
+					resumeFile={resumeFile}
+					uploadResume={uploadResume}
 				/>
 			) : (
 				<></>
@@ -152,6 +197,32 @@ const StudentProfile = () => {
 									<td>CPI</td>
 									<td>{studentData.cpi}</td>
 								</tr>
+								{studentData.resumeLink ? (
+									<>
+										<tr
+											data-aos="fade-left"
+											data-aos-delay="600"
+										>
+											<td>Resume</td>
+											<td>
+												<a
+													style={{
+														color: "var(--primary-color)",
+													}}
+													href={
+														"http://localhost:5001/" +
+														studentData.resumeLink
+													}
+													target="_blank"
+												>
+													View Resume
+												</a>
+											</td>
+										</tr>
+									</>
+								) : (
+									<></>
+								)}
 							</tbody>
 						</table>
 					</div>
@@ -160,7 +231,13 @@ const StudentProfile = () => {
 						data-aos="fade-up"
 						data-aos-offset="-500"
 					>
-						<button className="btn-active">Upload Resume</button>
+						<button
+							className="btn-active"
+							value={studentData._id}
+							onClick={handleUploadResume}
+						>
+							Upload Resume
+						</button>
 						<button
 							className="btn-active"
 							value={studentData._id}
