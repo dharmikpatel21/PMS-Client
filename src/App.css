@@ -23,6 +23,7 @@
 	--text-grey: #909290;
 	--sidebar-width: max(250px, 20%);
 	--header-height: 70px;
+	--header-space-height: 102px;
 }
 
 * {
@@ -48,7 +49,7 @@ body {
 }
 main {
 	display: block;
-	min-height: calc(100vh - var(--header-height) - 10%);
+	min-height: calc(100vh - var(--header-space-height));
 	width: 100%;
 }
 
