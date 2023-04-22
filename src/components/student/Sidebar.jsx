@@ -115,11 +115,15 @@ const Sidebar = ({ activeNavToggler }) => {
 				</h1>
 			</div>
 
-			<div className="sidebar-menu" data-aos="fade-right">
+			<div className="sidebar-menu">
 				<ul>
-					{menu.map((item) => {
+					{menu.map((item, index) => {
 						return (
-							<li key={item.link}>
+							<li
+								key={item.link}
+								data-aos="fade-left"
+								data-aos-delay={index * 100}
+							>
 								<NavLink
 									to={item.link}
 									className={({ isActive }) =>

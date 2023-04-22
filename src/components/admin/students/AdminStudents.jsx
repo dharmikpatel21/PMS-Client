@@ -35,7 +35,7 @@ const AdminStudents = () => {
 	const fetchData = () => {
 		setLoading(true);
 		axios
-			.get("http://localhost:5001/api/admin/fetch/students", {
+			.get("/api/admin/fetch/students", {
 				headers: {
 					"auth-token": sessionStorage.getItem("auth-token"),
 				},
@@ -54,7 +54,7 @@ const AdminStudents = () => {
 	const removeData = (_id) => {
 		if (_id === "" || !_id) return;
 		axios
-			.delete(`http://localhost:5001/api/admin/fetch/students/${_id}`, {
+			.delete(`/api/admin/fetch/students/${_id}`, {
 				headers: {
 					"auth-token": sessionStorage.getItem("auth-token"),
 				},
@@ -70,7 +70,7 @@ const AdminStudents = () => {
 		setLoading(true);
 		axios
 			.post(
-				`http://localhost:5001/api/admin/fetch/students`,
+				`/api/admin/fetch/students`,
 				{
 					query: searchBoxData,
 				},
@@ -94,7 +94,7 @@ const AdminStudents = () => {
 		if (!id || id === "") return;
 		axios
 			.post(
-				`http://localhost:5001/api/admin/update/student/${id}`,
+				`/api/admin/update/student/${id}`,
 				{
 					name: data.name,
 					department: data.department,

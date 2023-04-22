@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import StudentShowJobs from "./StudentShowJobs";
 import Loading from "../../Loading";
+import NoData from "../../NoData";
 
 const StudentJobs = () => {
 	const [jobData, setJobData] = useState([]);
@@ -17,17 +18,40 @@ const StudentJobs = () => {
 		}
 	}
 
-	const fetchData = () => {
+	const fetchData = async () => {
 		setLoading(true);
-		axios
-			.get(`http://localhost:5001/api/student/fetch/jobs`, {
+		await axios
+			.get(`/api/student/fetch/jobs`, {
 				headers: {
 					"auth-token": sessionStorage.getItem("auth-token"),
 				},
 			})
-			.then((res) => {
-				setJobData(() => {
-					return res.data;
+			.then(async (res) => {
+				const approvedJobs = res.data.approvedJobs;
+				const appliedJobs = res.data.appliedJobs;
+				const jobs = res.data.jobs;
+				const removeApprovedJobs = await jobs.filter((obj) => {
+					let flag = true;
+					approvedJobs.forEach(function (itemObj) {
+						if (obj._id === itemObj.jobId) {
+							flag = false;
+						}
+					});
+					return flag;
+				});
+				const removeAppliedJobs = await removeApprovedJobs.filter(
+					(obj) => {
+						let flag = true;
+						appliedJobs.forEach(function (itemObj) {
+							if (obj._id === itemObj.jobId) {
+								flag = false;
+							}
+						});
+						return flag;
+					}
+				);
+				await setJobData(() => {
+					return removeAppliedJobs;
 				});
 			})
 			.catch((err) => console.log(err))
@@ -35,11 +59,12 @@ const StudentJobs = () => {
 				setLoading(false);
 			});
 	};
+
 	const searchData = () => {
 		setLoading(true);
 		axios
 			.post(
-				`http://localhost:5001/api/student/fetch/jobs`,
+				`/api/student/fetch/jobs`,
 				{
 					query: searchBoxData,
 				},
@@ -62,7 +87,7 @@ const StudentJobs = () => {
 	const applyForJob = (id) => {
 		axios
 			.post(
-				"http://localhost:5001/api/student/apply",
+				"/api/student/apply",
 				{ jobId: id },
 				{
 					headers: {
@@ -81,6 +106,7 @@ const StudentJobs = () => {
 	}, []);
 
 	useEffect(() => {
+		if ((!searchBoxData, searchBoxData === "")) return;
 		searchData();
 	}, [search]);
 	useEffect(() => {
@@ -95,7 +121,9 @@ const StudentJobs = () => {
 				<Loading />
 			</main>
 		);
-
+	if (jobData.length === 0) {
+		return <NoData title={"All Jobs"} />;
+	}
 	return (
 		<>
 			<div

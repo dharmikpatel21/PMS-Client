@@ -27,7 +27,7 @@ const StudentProfile = () => {
 	const fetchProfileData = () => {
 		setLoading(true);
 		axios
-			.get("http://localhost:5001/api/student/fetch/myprofile", {
+			.get("/api/student/fetch/myprofile", {
 				headers: {
 					"auth-token": sessionStorage.getItem("auth-token"),
 				},
@@ -56,7 +56,7 @@ const StudentProfile = () => {
 		console.log(data);
 		axios
 			.post(
-				`http://localhost:5001/api/student/profile/${id}`,
+				`/api/student/profile/${id}`,
 				{ data },
 				{
 					headers: {
@@ -88,7 +88,7 @@ const StudentProfile = () => {
 		console.log(resumeFile.name);
 		axios
 			.post(
-				`http://localhost:5001/api/student/upload/resume/${studentData._id}`,
+				`/api/student/upload/resume/${studentData._id}`,
 				{ myFile: resumeFile },
 				{
 					headers: {

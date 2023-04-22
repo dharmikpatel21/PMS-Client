@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AdminShowJobs from "./AdminShowJobs";
 import "../../../css/search.css";
-import Loading from "../../Loading";
 import EditJob from "../forms/EditJob";
+import Loading from "../../Loading";
+import NoData from "../../NoData";
 
 const AdminJobs = () => {
 	const [jobData, setJobData] = useState([]);
@@ -23,7 +24,7 @@ const AdminJobs = () => {
 	const fetchData = () => {
 		setLoading(true);
 		axios
-			.get(`http://localhost:5001/api/admin/fetch/jobs`, {
+			.get(`/api/admin/fetch/jobs`, {
 				headers: {
 					"auth-token": sessionStorage.getItem("auth-token"),
 				},
@@ -42,7 +43,7 @@ const AdminJobs = () => {
 		setLoading(true);
 		axios
 			.post(
-				`http://localhost:5001/api/admin/fetch/jobs`,
+				`/api/admin/fetch/jobs`,
 				{
 					query: searchBoxData,
 				},
@@ -66,7 +67,7 @@ const AdminJobs = () => {
 		if (_id === "" || !_id) return;
 		setLoading(true);
 		axios
-			.delete(`http://localhost:5001/api/admin/fetch/jobs/${_id}`, {
+			.delete(`/api/admin/fetch/jobs/${_id}`, {
 				headers: {
 					"auth-token": sessionStorage.getItem("auth-token"),
 				},
@@ -84,7 +85,7 @@ const AdminJobs = () => {
 		if (!id || id === "") return;
 		axios
 			.post(
-				`http://localhost:5001/api/admin/update/job/${id}`,
+				`/api/admin/update/job/${id}`,
 				{
 					companyName: data.companyName,
 					email: data.email,
@@ -130,6 +131,10 @@ const AdminJobs = () => {
 				<Loading />
 			</main>
 		);
+
+	if (jobData.length === 0) {
+		return <NoData title={"All Jobs"} />;
+	}
 
 	return (
 		<>

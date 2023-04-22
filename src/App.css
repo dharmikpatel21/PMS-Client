@@ -85,8 +85,17 @@ svg {
 	width: 100%;
 }
 
+.empty-img-container {
+	height: calc(100vh - var(--header-space-height));
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+}
 .empty-img {
-	width: 100%;
+	max-width: 100%;
+	max-height: 100%;
 }
 
 .overflow-x-scroll {

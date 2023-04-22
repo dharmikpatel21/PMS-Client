@@ -1,5 +1,4 @@
 import React from "react";
-import NoData from "../../NoData";
 
 const AdminShowJobs = ({ data, setRemoveJob, setEditJob, setShowEditForm }) => {
 	const handleEdit = (_id) => {
@@ -16,9 +15,6 @@ const AdminShowJobs = ({ data, setRemoveJob, setEditJob, setShowEditForm }) => {
 		setRemoveJob(_id);
 	};
 
-	if (data.length === 0) {
-		return <NoData />;
-	}
 	return (
 		<div className="job-card-container">
 			{data.map((p) => {

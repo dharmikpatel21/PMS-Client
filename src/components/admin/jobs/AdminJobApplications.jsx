@@ -1,8 +1,9 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import AdminShowJobsStudent from "./AdminShowJobsStudent";
-import Loading from "../../Loading";
 import StudentProfile from "../students/StudentProfile";
+import Loading from "../../Loading";
+import NoData from "../../NoData";
 
 const AdminJobApplications = () => {
 	const [jobApplications, setJobApplications] = useState([]);
@@ -23,7 +24,7 @@ const AdminJobApplications = () => {
 	const fetchData = () => {
 		setLoading(true);
 		axios
-			.get("http://localhost:5001/api/admin/fetch/jobapplications", {
+			.get("/api/admin/fetch/jobapplications", {
 				headers: {
 					"auth-token": sessionStorage.getItem("auth-token"),
 				},
@@ -43,7 +44,7 @@ const AdminJobApplications = () => {
 		setLoading(true);
 		axios
 			.post(
-				`http://localhost:5001/api/admin/fetch/jobapplications`,
+				`/api/admin/fetch/jobapplications`,
 				{
 					query: searchBoxData,
 				},
@@ -66,7 +67,7 @@ const AdminJobApplications = () => {
 	const approveJobApplication = (id) => {
 		axios
 			.post(
-				"http://localhost:5001/api/admin/add/approvejob",
+				"/api/admin/add/approvejob",
 				{
 					applicationid: id,
 				},
@@ -107,6 +108,10 @@ const AdminJobApplications = () => {
 				<Loading />
 			</main>
 		);
+
+	if (jobApplications.length === 0) {
+		return <NoData title={"Job Applications"} />;
+	}
 
 	return (
 		<main>

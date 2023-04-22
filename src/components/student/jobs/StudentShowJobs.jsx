@@ -1,5 +1,4 @@
 import React from "react";
-import NoData from "../../NoData";
 
 const StudentShowJobs = ({
 	data,
@@ -16,10 +15,6 @@ const StudentShowJobs = ({
 		console.log(id);
 		setRemoveApplicationData(id);
 	};
-
-	if (data.length === 0) {
-		return <NoData />;
-	}
 	return (
 		<div className="job-card-container">
 			{data.map((p) => {

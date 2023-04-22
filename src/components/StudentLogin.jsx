@@ -17,7 +17,7 @@ const StudentLogin = () => {
 
 	const handleLoginSubmit = () => {
 		axios
-			.post("http://localhost:5001/api/student/login", {
+			.post("/api/student/login", {
 				email: emailRef.current.value,
 				password: passwordRef.current.value,
 			})

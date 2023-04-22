@@ -21,7 +21,7 @@ const EditJob = ({ editJob, setShowEditForm, updateJob }) => {
 		if (!id || id === "") return;
 		setLoading(true);
 		axios
-			.get(`http://localhost:5001/api/admin/fetch/jobs/${id}`, {
+			.get(`/api/admin/fetch/jobs/${id}`, {
 				headers: {
 					"auth-token": sessionStorage.getItem("auth-token"),
 				},

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AdminShowJobsStudent from "./AdminShowJobsStudent";
 import Loading from "../../Loading";
+import NoData from "../../NoData";
 
 const AdminApprovedJobs = () => {
 	const [approvedJobsData, setApprovedJobsData] = useState([]);
@@ -19,7 +20,7 @@ const AdminApprovedJobs = () => {
 	const fetchApprovedJobData = () => {
 		setLoading(true);
 		axios
-			.get("http://localhost:5001/api/admin/fetch/approvedjobs", {
+			.get("/api/admin/fetch/approvedjobs", {
 				headers: {
 					"auth-token": sessionStorage.getItem("auth-token"),
 				},
@@ -40,7 +41,7 @@ const AdminApprovedJobs = () => {
 		setLoading(true);
 		axios
 			.post(
-				`http://localhost:5001/api/admin/fetch/approvedjobs`,
+				`/api/admin/fetch/approvedjobs`,
 				{
 					query: searchBoxData,
 				},
@@ -77,6 +78,10 @@ const AdminApprovedJobs = () => {
 				<Loading />
 			</main>
 		);
+
+	if (approvedJobsData.length === 0) {
+		return <NoData title={"Approved Jobs"} />;
+	}
 
 	return (
 		<main>

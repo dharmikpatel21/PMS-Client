@@ -67,7 +67,9 @@ const Header = ({ activeNavToggler, setActiveNavToggler }) => {
 					alt="user"
 				/>
 				<div>
-					<h4>{userInfo ? userInfo.toUpperCase() : "student"}</h4>
+					<div className="user-name">
+						<h4>{userInfo ? userInfo.toUpperCase() : "student"}</h4>
+					</div>
 					<small>{userType ? userType : "Student"}</small>
 				</div>
 			</div>

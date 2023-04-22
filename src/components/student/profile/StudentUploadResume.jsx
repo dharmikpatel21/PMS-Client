@@ -69,7 +69,7 @@ const StudentUploadResume = ({
 						</button>
 					</div>
 					{/* <form
-						action="http://localhost:5001/api/student/upload/resume"
+						action="/api/student/upload/resume"
 						encType="multipart/form-data"
 						method="POST"
 					>

@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import StudentShowJobs from "./StudentShowJobs";
 import Loading from "../../Loading";
+import NoData from "../../NoData";
 
 const StudentJobApplications = () => {
 	const [jobAppicationData, setJobApplicationData] = useState([]);
@@ -20,7 +21,7 @@ const StudentJobApplications = () => {
 	const fetchJobApplication = () => {
 		setLoading(true);
 		axios
-			.get("http://localhost:5001/api/student/fetch/appliedjobs", {
+			.get("/api/student/fetch/appliedjobs", {
 				headers: {
 					"auth-token": sessionStorage.getItem("auth-token"),
 				},
@@ -42,7 +43,7 @@ const StudentJobApplications = () => {
 		setLoading(true);
 		axios
 			.post(
-				`http://localhost:5001/api/student/fetch/appliedjobs`,
+				`/api/student/fetch/appliedjobs`,
 				{
 					query: searchBoxData,
 				},
@@ -66,14 +67,11 @@ const StudentJobApplications = () => {
 	const removeJobApplication = (_id) => {
 		if (_id === "" || !_id) return;
 		axios
-			.delete(
-				`http://localhost:5001/api/student/fetch/appliedjobs/${_id}`,
-				{
-					headers: {
-						"auth-token": sessionStorage.getItem("auth-token"),
-					},
-				}
-			)
+			.delete(`/api/student/fetch/appliedjobs/${_id}`, {
+				headers: {
+					"auth-token": sessionStorage.getItem("auth-token"),
+				},
+			})
 			.then((res) => {
 				fetchJobApplication();
 				window.alert(res.data.msg);
@@ -104,7 +102,9 @@ const StudentJobApplications = () => {
 				<Loading />
 			</main>
 		);
-
+	if (jobAppicationData.length === 0) {
+		return <NoData title={"Job Applications"} />;
+	}
 	return (
 		<>
 			<div className="search-area flex justify-between items-center">

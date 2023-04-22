@@ -1,5 +1,4 @@
 import React from "react";
-import NoData from "../../NoData";
 
 const AdminShowJobsStudent = ({
 	data,
@@ -16,9 +15,6 @@ const AdminShowJobsStudent = ({
 		setProfileData(email);
 	};
 
-	if (data.length === 0) {
-		return <NoData />;
-	}
 	return (
 		<div className="job-card-container">
 			{data.map((p) => {

@@ -13,15 +13,12 @@ const StudentEditProfile = ({
 	const handleCancel = () => {
 		setShowEditForm(false);
 	};
-	const confirmPassword = () => {
-		if (confPassword !== password) {
-			window.alert("Password Does not match");
-		}
-	};
 	const handleEdit = (e) => {
 		e.preventDefault();
-		if (password !== "" || confPassword !== "") confirmPassword();
-
+		if (confPassword !== password)
+			return window.alert("Password Does not match");
+		if (password === "" || confPassword === "")
+			return window.alert("Password field should not empty");
 		updateProfileData(updateDetails, { password });
 	};
 

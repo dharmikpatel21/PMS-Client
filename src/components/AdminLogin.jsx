@@ -17,7 +17,7 @@ const AdminLogin = () => {
 
 	const handleLoginSubmit = () => {
 		axios
-			.post("http://localhost:5001/api/admin/login", {
+			.post("/api/admin/login", {
 				email: emailRef.current.value,
 				password: passwordRef.current.value,
 			})

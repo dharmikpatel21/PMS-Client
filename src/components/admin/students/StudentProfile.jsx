@@ -14,14 +14,11 @@ const StudentProfile = ({ profileData, setShowProfile }) => {
 	const fetchCurrentStudentData = (email) => {
 		setLoading(true);
 		axios
-			.get(
-				`http://localhost:5001/api/admin/fetch/students/email/${email}`,
-				{
-					headers: {
-						"auth-token": sessionStorage.getItem("auth-token"),
-					},
-				}
-			)
+			.get(`/api/admin/fetch/students/email/${email}`, {
+				headers: {
+					"auth-token": sessionStorage.getItem("auth-token"),
+				},
+			})
 			.then((res) => {
 				setStudentData(() => {
 					return res.data;

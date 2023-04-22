@@ -13,7 +13,7 @@ const StudentDashboard = () => {
 	const fetchDashboardData = () => {
 		setLoading(true);
 		axios
-			.get("http://localhost:5001/api/student/fetch/dashboard", {
+			.get("/api/student/fetch/dashboard", {
 				headers: {
 					"auth-token": sessionStorage.getItem("auth-token"),
 				},
@@ -31,7 +31,7 @@ const StudentDashboard = () => {
 	const fetchJobData = () => {
 		setLoading(true);
 		axios
-			.get("http://localhost:5001/api/student/fetch/jobs", {
+			.get("/api/student/fetch/jobs", {
 				headers: {
 					"auth-token": sessionStorage.getItem("auth-token"),
 				},
@@ -39,7 +39,7 @@ const StudentDashboard = () => {
 			.then((res) => {
 				// console.log(res.data);
 				setJobData(() => {
-					return res.data;
+					return res.data.jobs;
 				});
 			})
 			.catch((err) => {

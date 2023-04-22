@@ -25,6 +25,7 @@ header {
 	display: none;
 	width: 30px;
 	cursor: pointer;
+	z-index: 11;
 }
 
 .menu-toggler::before,
@@ -51,6 +52,11 @@ header {
 .user-wrapper {
 	display: flex;
 	align-items: center;
+}
+
+.user-wrapper .user-name {
+	max-height: 50px;
+	overflow: hidden;
 }
 
 .user-wrapper img {
@@ -88,6 +94,7 @@ header {
 	header {
 		left: 0;
 		width: 100%;
+		transition: all 0.3s ease;
 	}
 	.header-shrink {
 		left: var(--sidebar-width);

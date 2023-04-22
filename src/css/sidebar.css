@@ -7,7 +7,7 @@
 	height: 100%;
 	background: var(--primary-color);
 	z-index: 9;
-	/* transition: left 0.3s ease; */
+	transition: all 0.3s ease;
 }
 
 .sidebar-icon {
@@ -56,5 +56,6 @@
 	.sidebar.show-sidebar {
 		opacity: 1;
 		left: 0;
+		box-shadow: 10px 0px 20px rgba(128, 128, 128, 0.5), 6px 0px 6px gray;
 	}
 }

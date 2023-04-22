@@ -21,7 +21,7 @@ const EditStudent = ({ editStudent, setShowEditForm, updateStudent }) => {
 		if (!id || id === "") return;
 		setLoading(true);
 		axios
-			.get(`http://localhost:5001/api/admin/fetch/students/${id}`, {
+			.get(`/api/admin/fetch/students/${id}`, {
 				headers: {
 					"auth-token": sessionStorage.getItem("auth-token"),
 				},
@@ -126,7 +126,9 @@ const EditStudent = ({ editStudent, setShowEditForm, updateStudent }) => {
 								</span>
 								<input
 									type="text"
-									placeholder={enrollmentNo}
+									placeholder={
+										enrollmentNo || "Enrollment No"
+									}
 									disabled
 								/>
 							</div>
@@ -134,7 +136,7 @@ const EditStudent = ({ editStudent, setShowEditForm, updateStudent }) => {
 								<span className="input-label">Email</span>
 								<input
 									type="email"
-									placeholder={email}
+									placeholder={email || "Email"}
 									disabled
 								/>
 							</div>

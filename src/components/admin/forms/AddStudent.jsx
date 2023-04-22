@@ -31,7 +31,7 @@ const AddStudent = () => {
 		setLoading(true);
 		axios
 			.post(
-				"http://localhost:5001/api/admin/add/student",
+				"/api/admin/add/student",
 				{
 					enrollmentNo,
 					name,

@@ -28,7 +28,7 @@ const AddJob = () => {
 		setLoading(true);
 		axios
 			.post(
-				"http://localhost:5001/api/admin/add/job",
+				"/api/admin/add/job",
 				{
 					companyName,
 					email,

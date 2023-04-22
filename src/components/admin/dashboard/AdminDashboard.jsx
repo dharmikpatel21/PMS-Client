@@ -13,7 +13,7 @@ const AdminDashboard = () => {
 	const fetchDashboardData = () => {
 		setLoading(true);
 		axios
-			.get("http://localhost:5001/api/admin/fetch/dashboard", {
+			.get("/api/admin/fetch/dashboard", {
 				headers: {
 					"auth-token": sessionStorage.getItem("auth-token"),
 				},
@@ -31,7 +31,7 @@ const AdminDashboard = () => {
 	const fetchJobData = () => {
 		setLoading(true);
 		axios
-			.get("http://localhost:5001/api/admin/fetch/jobs", {
+			.get("/api/admin/fetch/jobs", {
 				headers: {
 					"auth-token": sessionStorage.getItem("auth-token"),
 				},
