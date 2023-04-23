@@ -21,6 +21,7 @@ import AddJob from "./components/admin/forms/AddJob";
 
 import AOS from "aos";
 import "aos/dist/aos.css"; // You can also use <link> for styles
+import PageNotFound from "./components/PageNotFound";
 // ..
 AOS.init();
 
@@ -70,6 +71,7 @@ function App() {
 						element={<StudentProfile />}
 					/>
 				</Route>
+				<Route path="*" element={<PageNotFound />} />
 			</Routes>
 		</BrowserRouter>
 	);

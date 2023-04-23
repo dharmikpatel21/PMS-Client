@@ -99,8 +99,8 @@ const StudentLogin = () => {
 			</main>
 		);
 	} else {
-		if (sessionStorage.getItem("user-type") === "client")
-			navigate("/client/dashboard");
+		if (sessionStorage.getItem("user-type") === "student")
+			navigate("/student/dashboard");
 		else if (sessionStorage.getItem("user-type") === "admin")
 			navigate("/admin/dashboard");
 	}

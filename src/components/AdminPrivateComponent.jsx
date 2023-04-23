@@ -12,6 +12,9 @@ const AdminPrivateComponent = () => {
 
 	useEffect(() => {
 		document.title = "PMS | Admin";
+		if (!sessionStorage.getItem("auth-token")) {
+			return navigate("/");
+		}
 	}, []);
 
 	useEffect(() => {
@@ -38,7 +41,7 @@ const AdminPrivateComponent = () => {
 			</>
 		);
 	} else {
-		navigate("/");
+		return <></>;
 	}
 };
 

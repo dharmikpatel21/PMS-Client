@@ -12,6 +12,9 @@ const StudentPrivateComponent = () => {
 
 	useEffect(() => {
 		document.title = "PMS | Student";
+		if (!sessionStorage.getItem("auth-token")) {
+			return navigate("/");
+		}
 	}, []);
 
 	useEffect(() => {
@@ -38,7 +41,7 @@ const StudentPrivateComponent = () => {
 			</>
 		);
 	} else {
-		navigate("/");
+		return <></>;
 	}
 };
 
