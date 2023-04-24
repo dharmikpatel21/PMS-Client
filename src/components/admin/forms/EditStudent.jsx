@@ -99,7 +99,10 @@ const EditStudent = ({ editStudent, setShowEditForm, updateStudent }) => {
 		);
 	return (
 		<main>
-			<span className="edit-form-cancel-btn" onClick={handleCancel}>
+			<span
+				className="edit-form-cancel-btn form-cancel-btn"
+				onClick={handleCancel}
+			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"

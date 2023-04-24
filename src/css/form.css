@@ -138,3 +138,7 @@
 	width: 50px;
 	z-index: 11;
 }
+
+.form-cancel-btn {
+	position: fixed;
+}
